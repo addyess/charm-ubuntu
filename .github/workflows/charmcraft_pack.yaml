@@ -1,17 +1,8 @@
 name: Build Charm with charmcraft
 on:
   workflow_dispatch:
-    inputs:
-      projectDir:
-        description: |
-          Specify the project's directory
-        type: str
-        default: './'
 
 jobs:
   charmcraft-pack:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-      - run: sudo snap install charmcraft --classic
-      - run: charmcraft pack -v --project-dir ${{ inputs.projectDir }}
+    uses: charmed-kubernetes/workflows/.github/workflows/charmcraft-pack.yaml@workflows/charm-builders
+    
